@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Mesa de ayuda · tickets abiertos (últimos 30 días)</h1>
+<form class="linea" method="post">
+  <select name="solicitante_id">{% for e in empleados %}<option value="{{ e.id }}">{{ e.nombre }}</option>{% endfor %}</select>
+  <select name="categoria">{% for c in ['HARDWARE','SOFTWARE','ACCESOS','RED','SEGURIDAD'] %}<option>{{ c }}</option>{% endfor %}</select>
+  <select name="prioridad">{% for p in ['BAJA','MEDIA','ALTA','CRITICA'] %}<option {% if p == 'MEDIA' %}selected{% endif %}>{{ p }}</option>{% endfor %}</select>
+  <input name="titulo" placeholder="Describa el problema" required size="40">
+  <button>Crear ticket</button>
+</form>
+<table>
+  <tr><th>#</th><th>Prioridad</th><th>Categoría</th><th>Título</th><th>Solicitante</th><th>Estado</th><th>Creado</th><th></th></tr>
+  {% for t in filas %}
+  <tr><td>{{ t.id }}</td><td class="{{ t.prioridad }}">{{ t.prioridad }}</td><td>{{ t.categoria }}</td><td>{{ t.titulo }}</td>
+      <td>{{ t.solicitante }}</td><td>{{ t.estado }}</td><td>{{ t.creado_en.strftime('%Y-%m-%d %H:%M') }}</td>
+      <td><form method="post" action="/tickets/{{ t.id }}/cerrar"><button>Cerrar</button></form></td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Inventario de activos</h1>
+<form class="linea" method="get">
+  <input name="q" value="{{ q }}" placeholder="Buscar por código, marca o categoría">
+  <button>Buscar</button>
+</form>
+<form class="linea" method="post">
+  <input name="codigo" placeholder="TS-POR-0999" required>
+  <select name="categoria_id">{% for c in categorias %}<option value="{{ c.id }}">{{ c.nombre }}</option>{% endfor %}</select>
+  <input name="marca" placeholder="Marca" required>
+  <input name="modelo" placeholder="Modelo" required>
+  <input name="serial" placeholder="Serial" required>
+  <input name="valor_compra" type="number" placeholder="Valor COP" required>
+  <button>Registrar activo</button>
+</form>
+<table>
+  <tr><th>Código</th><th>Categoría</th><th>Marca / modelo</th><th>Estado</th><th>Ubicación</th><th>Responsable</th><th>Última act. SO</th></tr>
+  {% for a in filas %}
+  <tr><td>{{ a.codigo }}</td><td>{{ a.categoria }}</td><td>{{ a.marca }} {{ a.modelo }}</td><td>{{ a.estado }}</td>
+      <td>{{ a.ubicacion }}</td><td>{{ a.responsable or '—' }}</td><td>{{ a.ultima_actualizacion_so or '—' }}</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

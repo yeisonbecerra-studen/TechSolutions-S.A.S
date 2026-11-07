@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Tablero</h1>
+<div class="tarjetas">
+  <div class="tarjeta"><div class="n">{{ r.empleados }}</div>Empleados activos</div>
+  <div class="tarjeta"><div class="n">{{ r.activos }}</div>Activos inventariados</div>
+  <div class="tarjeta"><div class="n">{{ r.tickets_abiertos }}</div>Tickets sin cerrar</div>
+  <div class="tarjeta alerta"><div class="n">{{ r.sin_parches }}</div>Equipos sin parches (+30 días)</div>
+  <div class="tarjeta alerta"><div class="n">{{ r.pct_sin_mfa }}%</div>Empleados sin MFA</div>
+</div>
+<h2>Tickets sin cerrar por prioridad</h2>
+<table><tr><th>Prioridad</th><th>Total</th></tr>
+{% for p in por_prioridad %}<tr><td class="{{ p.prioridad }}">{{ p.prioridad }}</td><td>{{ p.total }}</td></tr>{% endfor %}
+</table>
+<h2>Inventario por categoría</h2>
+<table><tr><th>Categoría</th><th>Cantidad</th><th>Valor de compra (COP)</th></tr>
+{% for c in por_categoria %}<tr><td>{{ c.nombre }}</td><td>{{ c.total }}</td><td>{{ "{:,.0f}".format(c.valor) }}</td></tr>{% endfor %}
+</table>
+{% endblock %}

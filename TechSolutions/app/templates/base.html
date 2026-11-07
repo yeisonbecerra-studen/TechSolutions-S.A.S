@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TechSolutions S.A.S.</title>
+  <style>
+    :root { --azul: #0b3d91; --gris: #f3f5f8; --borde: #d9dee7; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, sans-serif; background: var(--gris); color: #1d2433; }
+    header { background: var(--azul); color: #fff; padding: 14px 24px; display: flex; gap: 24px; align-items: center; }
+    header b { font-size: 18px; margin-right: auto; }
+    header a { color: #fff; text-decoration: none; opacity: .85; }
+    header a:hover { opacity: 1; }
+    main { max-width: 1100px; margin: 24px auto; padding: 0 16px; }
+    .tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+    .tarjeta { background: #fff; border: 1px solid var(--borde); border-radius: 8px; padding: 16px; }
+    .tarjeta .n { font-size: 30px; font-weight: 700; color: var(--azul); }
+    .alerta .n { color: #c0392b; }
+    table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--borde); margin-top: 12px; font-size: 14px; }
+    th, td { padding: 8px 10px; border-bottom: 1px solid var(--borde); text-align: left; }
+    th { background: #e8edf5; }
+    form.linea { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; background: #fff; padding: 12px; border: 1px solid var(--borde); border-radius: 8px; }
+    input, select, button { padding: 7px 9px; border: 1px solid var(--borde); border-radius: 6px; font: inherit; }
+    button { background: var(--azul); color: #fff; border: 0; cursor: pointer; }
+    .CRITICA { color: #c0392b; font-weight: 700; } .ALTA { color: #d35400; font-weight: 600; }
+    h2 { margin-top: 28px; }
+  </style>
+</head>
+<body>
+  <header>
+    <b>TechSolutions S.A.S. · Activos TI y Mesa de Ayuda</b>
+    <a href="/">Tablero</a><a href="/activos">Activos</a><a href="/tickets">Tickets</a><a href="/docs">API</a>
+  </header>
+  <main>{% block contenido %}{% endblock %}</main>
+</body>
+</html>

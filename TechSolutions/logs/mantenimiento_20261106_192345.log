@@ -1,0 +1,35 @@
+== Filas muertas ANTES
+ relname | n_dead_tup 
+---------+------------
+(0 rows)
+
+== Purga de logs de auditoría con más de 365 días
+ registros_purgados 
+--------------------
+                  0
+(1 row)
+
+== VACUUM ANALYZE (recupera espacio y actualiza estadísticas del optimizador)
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+== Filas muertas DESPUÉS
+ pg_sleep 
+----------
+ 
+(1 row)
+
+      relname      | n_dead_tup |          last_vacuum          |         last_analyze          
+-------------------+------------+-------------------------------+-------------------------------
+ activos           |          0 | 2026-11-06 19:23:45.798484-05 | 2026-11-06 19:23:45.804981-05
+ categorias_activo |          0 |                               | 
+ departamentos     |          0 |                               | 
+ empleados         |          0 | 2026-11-06 19:23:45.809403-05 | 2026-11-06 19:23:45.811995-05
+ log_cambios       |          0 | 2026-11-06 19:23:45.819776-05 | 2026-11-06 19:23:46.112282-05
+ log_respaldos     |          0 |                               | 2026-11-06 17:43:26.383137-05
+ mantenimientos    |          0 | 2026-11-06 19:23:45.815002-05 | 2026-11-06 19:23:45.816843-05
+ tickets           |          0 | 2026-11-06 19:23:45.550559-05 | 2026-11-06 19:23:45.791831-05
+(8 rows)
+
